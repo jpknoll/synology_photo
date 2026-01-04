@@ -102,9 +102,6 @@ class SynologyPhotoSyncConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(schema_dict),
-            description_placeholders={
-                "sources_help": "Enter sources as JSON array. Example: [{\"url\": \"https://example.com/sharing/abc\", \"folder_name\": \"photos\"}]"
-            },
             errors=errors,
         )
 

@@ -9,7 +9,7 @@
           "sources": "Sources (JSON array)"
         },
         "data_description": {
-          "sources": "Enter sources as JSON array. Example: [{\"url\": \"https://example.com/sharing/abc\", \"folder_name\": \"photos\"}]"
+          "sources": "Enter sources as JSON array. Example: [{{\"url\": \"https://example.com/sharing/abc\", \"folder_name\": \"photos\"}}]. Each object must have url and folder_name fields."
         }
       }
     },
