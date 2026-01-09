@@ -1,6 +1,6 @@
 {
-    "domain": "synology_photo_album",
-    "name": "Synology Photo Album",
+    "domain": "nas_photo_album",
+    "name": "NAS Photo Album",
     "codeowners": ["@jpknoll"],
     "config_flow": true,
     "dependencies": [],
