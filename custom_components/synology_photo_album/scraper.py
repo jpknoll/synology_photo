@@ -1,4 +1,4 @@
-"""Scraper for Synology Photos sharing page."""
+"""Scraper for photo album sharing pages."""
 from __future__ import annotations
 
 import logging
@@ -10,8 +10,8 @@ import aiohttp
 _LOGGER = logging.getLogger(__name__)
 
 
-class SynologyPhotoScraper:
-    """Scraper for Synology Photos sharing pages."""
+class PhotoAlbumScraper:
+    """Scraper for photo album sharing pages."""
 
     def __init__(self, sharing_url: str, session: aiohttp.ClientSession) -> None:
         """Initialize the scraper."""

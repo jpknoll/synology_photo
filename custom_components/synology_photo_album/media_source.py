@@ -1,4 +1,4 @@
-"""Media source for Synology Photo Album."""
+"""Media source for Photo Album Share."""
 from __future__ import annotations
 
 import logging
@@ -15,20 +15,20 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .const import DOMAIN
-from .scraper import SynologyPhotoScraper
+from .scraper import PhotoAlbumScraper
 
 _LOGGER = logging.getLogger(__name__)
 
 
-async def async_get_media_source(hass: HomeAssistant) -> SynologyPhotoMediaSource:
-    """Set up Synology Photo Album media source."""
-    return SynologyPhotoMediaSource(hass)
+async def async_get_media_source(hass: HomeAssistant) -> PhotoAlbumMediaSource:
+    """Set up Photo Album Share media source."""
+    return PhotoAlbumMediaSource(hass)
 
 
-class SynologyPhotoMediaSource(MediaSource):
-    """Synology Photo Album media source."""
+class PhotoAlbumMediaSource(MediaSource):
+    """Photo Album Share media source."""
 
-    name: str = "Synology Photo Album"
+    name: str = "Photo Album Share"
 
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize the media source."""
@@ -66,7 +66,7 @@ class SynologyPhotoMediaSource(MediaSource):
             identifier="",
             media_class="directory",
             media_content_type="image",
-            title="Synology Photo Album",
+            title="Photo Album Share",
             can_play=False,
             can_expand=True,
             children=[],
@@ -75,7 +75,7 @@ class SynologyPhotoMediaSource(MediaSource):
         # Fetch photos
         try:
             session = async_get_clientsession(self.hass)
-            scraper = SynologyPhotoScraper(sharing_url, session)
+            scraper = PhotoAlbumScraper(sharing_url, session)
             photos = await scraper.get_all_photos()
             
             children = []

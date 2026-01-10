@@ -1,4 +1,4 @@
-"""Config flow for Synology Photo Album."""
+"""Config flow for Photo Album Share."""
 from __future__ import annotations
 
 import logging
@@ -7,12 +7,12 @@ from typing import Any
 import voluptuous as vol
 
 from homeassistant import config_entries
+from homeassistant.config_entries import ConfigFlowResult
 from homeassistant.core import HomeAssistant
-from homeassistant.data_entry_flow import FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .const import DOMAIN, CONF_SHARING_URL, DEFAULT_UPDATE_INTERVAL, CONF_UPDATE_INTERVAL
-from .scraper import SynologyPhotoScraper
+from .scraper import PhotoAlbumScraper
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -24,14 +24,14 @@ STEP_USER_DATA_SCHEMA = vol.Schema(
 )
 
 
-class SynologyPhotoAlbumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
-    """Handle a config flow for Synology Photo Album."""
+class PhotoAlbumShareConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
+    """Handle a config flow for Photo Album Share."""
 
     VERSION = 1
 
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
-    ) -> FlowResult:
+    ) -> ConfigFlowResult:
         """Handle the initial step."""
         if user_input is None:
             return self.async_show_form(
@@ -48,7 +48,7 @@ class SynologyPhotoAlbumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             # Test the URL by trying to fetch it
             try:
                 session = async_get_clientsession(self.hass)
-                scraper = SynologyPhotoScraper(sharing_url, session)
+                scraper = PhotoAlbumScraper(sharing_url, session)
                 album_info = await scraper.get_album_info()
                 if not album_info:
                     errors[CONF_SHARING_URL] = "cannot_connect"
@@ -66,7 +66,7 @@ class SynologyPhotoAlbumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         self._abort_if_unique_id_configured()
 
         return self.async_create_entry(
-            title="Synology Photo Album",
+            title="Photo Album Share",
             data=user_input,
         )
 

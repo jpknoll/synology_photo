@@ -1,6 +1,6 @@
-# Synology Photo Album Home Assistant Integration
+# Photo Album Share Home Assistant Integration
 
-This custom Home Assistant integration creates a media source from images in a Synology Photos shared album. It scrapes the sharing page to extract image URLs and makes them available in Home Assistant's media browser.
+This custom Home Assistant integration creates a media source from images in shared photo albums (such as Synology Photos). It scrapes the sharing page to extract image URLs and makes them available in Home Assistant's media browser.
 
 ## Features
 
@@ -20,7 +20,7 @@ This custom Home Assistant integration creates a media source from images in a S
 
 3. Go to **Settings** → **Devices & Services** → **Add Integration**
 
-4. Search for "Synology Photo Album" and follow the setup wizard
+4. Search for "Photo Album Share" and follow the setup wizard
 
 5. Enter your Synology Photos sharing URL (e.g., `https://your-nas.quickconnect.to/mo/sharing/XXXXX`)
 
@@ -41,13 +41,13 @@ The integration:
 ## Usage
 
 Once configured, you can:
-- Browse photos in the Media Browser (Media → Browse Media → Synology Photo Album)
+- Browse photos in the Media Browser (Media → Browse Media → Photo Album Share)
 - Use the media source in automations or scripts
 - Display photos on dashboards using media players that support images
 
 ## Technical Details
 
-The scraper uses the same API endpoints that the Synology Photos web interface uses:
+The scraper uses the same API endpoints that photo sharing web interfaces use (e.g., Synology Photos):
 - `SYNO.Foto.Browse.Album` - Gets album information
 - `SYNO.Foto.Browse.Item` - Gets photo items from the album
 - `/synofoto/api/v2/p/Thumbnail/get` - Gets thumbnail/full image URLs

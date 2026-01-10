@@ -1,6 +1,6 @@
 {
-    "domain": "nas_photo_album",
-    "name": "NAS Photo Album",
+    "domain": "photo_album_share",
+    "name": "Photo Album Share",
     "codeowners": ["@jpknoll"],
     "config_flow": true,
     "dependencies": [],
