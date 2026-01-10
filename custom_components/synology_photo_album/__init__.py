@@ -3,13 +3,13 @@ from __future__ import annotations
 
 import logging
 
-from homeassistant.components import media_source
+from homeassistant.components.media_source import async_register_source
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 
 from .const import DOMAIN
-from .media_source import async_get_media_source
+from . import media_source as synology_media_source
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -20,7 +20,8 @@ async def async_setup(hass: HomeAssistant, config: dict) -> bool:
     """Set up the Synology Photo Album component."""
     # Register media source at setup time
     hass.data.setdefault(DOMAIN, {})
-    media_source.async_register_source(hass, await async_get_media_source(hass))
+    synology_source = await synology_media_source.async_get_media_source(hass)
+    async_register_source(hass, synology_source)
     return True
 
 
